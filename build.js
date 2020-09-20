@@ -1,16 +1,17 @@
 const fs = require('fs');
 
-let h = ''
+let nodes = ''
+    , edges = ''
     , id = 0
     , x = 0
     , y = 1
-    , yMax = 100 // line break
-    , m = 3 // node margin
-    , p = 3; // node space
+    , m = 10 // node margin
+    , p = 10 // node space
+    , yMax = (p + m) * 10; // line break
 
 const size = 1
     , color = '#f00'
-    , nb = 10; // nb of node
+    , nb = 100; // nb of node
 
 function randInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -30,24 +31,23 @@ function randName() {
     return name.join(' ')
 }
 
-for (let p = 0; p < nb; p++) {
-    h +=
-    `{"id":${id++},"label":"${randName()}","x":${randFloat(x - p, x)},"y":${randFloat(y - p, y)},"size":${size},"color":"${color}"}`;
-
-    if (p == nb - 1) { break; }
-
-    h += ','
+for (let ix = 0; ix < nb; ix++) {
+    x += m
+    nodes += `{"id":${id++},"label":"${randName()}","x":${randFloat(x - p, x)},"y":${randFloat(y - p, y)},"size":${size},"color":"${color}"}`;
 
     if (x > (yMax - (m + p))) {
         x = 0;
-        y += 3;
+        y += m;
     }
-    x += m * 2
+    x += m
+
+    if (ix == nb - 1) { break; }
+    nodes += ','
 }
 
-h = ['[', h, ']'].join('');
+nodes = ['[', nodes, ']'].join('');
 
-fs.writeFile('data.json', h, (err) => {
+fs.writeFile('data.json', nodes, (err) => {
     if (err) {
         return console.error('Err. write data.json file')
     }
