@@ -1,16 +1,12 @@
 # Node Cloud Generator
 
-Générer un fichier JSON avec coordonnées et attributs de nœuds pour un graphe.
+Générer des fichiers JSON avec attributs de nœuds et liens pour former un graphe.
+Utile pour des tests massifs.
 
-Modifier `build.js` selon vos préférences et executer le programme (voir ci-dessous) pour générer un fichier `data.json`.
-
+Modifier `app.js` selon vos préférences et executer le programme (voir ci-dessous) pour générer un répertoire `build` avec les fichiers de données à l'intérieur.
 
 Intall [NodeJs](https://nodejs.org/)
 
 ```bash
-# download
-git clone https://github.com/Myllaume/node-cloud-generator.git
-
-# execute
-node build
+node app
 ```
